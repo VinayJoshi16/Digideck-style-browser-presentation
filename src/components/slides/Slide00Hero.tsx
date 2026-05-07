@@ -119,7 +119,7 @@ export default function Slide00Hero() {
             <span>Explore the Property</span>
             <span style={{ position: 'relative', zIndex: 1 }}>→</span>
           </button>
-          
+          <a
             href="mailto:leasing@mallofamerica.com"
             className="btn-secondary"
           >
