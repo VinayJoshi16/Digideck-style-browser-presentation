@@ -115,8 +115,8 @@ export default function ChatBot() {
       <div
         style={{
           position: 'fixed',
-          bottom:   '36px',
-          right:    '36px',
+          bottom:   '96px',
+          right:    '40px',
           zIndex:   500,
         }}
       >
@@ -235,8 +235,8 @@ export default function ChatBot() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             style={{
               position:      'fixed',
-              bottom:        '112px',
-              right:         '36px',
+              bottom:        '160px',
+              right:         '40px',
               width:         '380px',
               height:        '560px',
               zIndex:        499,
