@@ -127,7 +127,7 @@ export default function ChatBot() {
             transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
             style={{
               position:     'absolute',
-              inset:        '-6px',
+              inset:        '-4px',
               borderRadius: '50%',
               border:       '1.5px solid var(--gold)',
               pointerEvents: 'none',
@@ -148,8 +148,8 @@ export default function ChatBot() {
           whileTap={{ scale: 0.96 }}
           aria-label="Open leasing assistant"
           style={{
-            width:          '60px',
-            height:         '60px',
+            width:          '48px',
+            height:         '48px',
             borderRadius:   '50%',
             background:     isOpen ? 'var(--dark2)' : 'var(--gold)',
             border:         '1.5px solid rgba(200,169,110,0.5)',
@@ -170,7 +170,7 @@ export default function ChatBot() {
                 animate={{ rotate: 0,   opacity: 1 }}
                 exit={{   rotate:  90,  opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                width="20" height="20" viewBox="0 0 24 24"
+                width="16" height="16" viewBox="0 0 24 24"
                 fill="none" stroke="var(--white)" strokeWidth="1.5"
                 strokeLinecap="round"
               >
@@ -183,7 +183,7 @@ export default function ChatBot() {
                 animate={{ rotate: 0,   opacity: 1 }}
                 exit={{   rotate: -90,  opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                width="22" height="22" viewBox="0 0 24 24"
+                width="18" height="18" viewBox="0 0 24 24"
                 fill="none" stroke="var(--black)" strokeWidth="1.5"
                 strokeLinecap="round" strokeLinejoin="round"
               >
