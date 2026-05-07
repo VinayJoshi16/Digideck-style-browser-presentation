@@ -1,0 +1,291 @@
+/* src/styles/globals.css */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0;
+}
+
+:root {
+  --black:     #080808;
+  --off-black: #0f0f0f;
+  --dark:      #141414;
+  --dark2:     #1a1a1a;
+  --dark3:     #222222;
+  --gold:      #C8A96E;
+  --gold2:     #e8c98a;
+  --gold-dim:  #8a7148;
+  --white:     #F8F5EE;
+  --white2:    #ede9df;
+  --gray:      #888880;
+  --gray2:     #555550;
+  --serif:     var(--font-cormorant), Georgia, serif;
+  --sans:      var(--font-dm-sans), system-ui, sans-serif;
+  --mono:      var(--font-dm-mono), monospace;
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html, body {
+  width:      100%;
+  height:     100%;
+  overflow:   hidden;   /* ← key: no scroll on the page itself */
+  background: var(--black);
+  color:      var(--white);
+  font-family: var(--sans);
+  font-weight: 300;
+  cursor:     none;
+}
+
+/* ─── SCROLLBAR (for internal scrollable areas) ──────────── */
+::-webkit-scrollbar       { width: 3px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+/* ─── SELECTION ──────────────────────────────────────────── */
+::selection { background: var(--gold); color: var(--black); }
+
+/* ─── CUSTOM CURSOR ──────────────────────────────────────── */
+.cursor {
+  position:         fixed;
+  width:            8px;
+  height:           8px;
+  background:       var(--gold);
+  border-radius:    50%;
+  pointer-events:   none;
+  z-index:          9999;
+  transform:        translate(-50%, -50%);
+  transition:       transform 0.15s var(--ease-out),
+                    background 0.2s,
+                    opacity 0.2s;
+}
+.cursor-ring {
+  position:         fixed;
+  width:            36px;
+  height:           36px;
+  border:           1px solid rgba(200, 169, 110, 0.4);
+  border-radius:    50%;
+  pointer-events:   none;
+  z-index:          9998;
+  transform:        translate(-50%, -50%);
+  transition:       width 0.3s, height 0.3s, opacity 0.2s;
+}
+body.cursor-hover .cursor {
+  transform:  translate(-50%, -50%) scale(2.5);
+  background: var(--gold2);
+}
+body.cursor-hover .cursor-ring {
+  width:   60px;
+  height:  60px;
+  opacity: 0.3;
+}
+
+/* ─── GRAIN OVERLAY ──────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset:    -200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity:          0.018;
+  pointer-events:   none;
+  z-index:          9997;
+  animation:        grainMove 0.5s steps(1) infinite;
+}
+@keyframes grainMove {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-3%, -2%); }
+  40%  { transform: translate(2%, 3%); }
+  60%  { transform: translate(-1%, 1%); }
+  80%  { transform: translate(3%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ─── SLIDE CONTENT SAFE AREA ────────────────────────────── */
+/* All slides must respect these offsets:                     */
+/* Top: 64px (top bar)   Bottom: 72px (bottom nav bar)        */
+.slide-safe {
+  position: absolute;
+  top:      64px;
+  bottom:   72px;
+  left:     0;
+  right:    0;
+  overflow: hidden;
+}
+.slide-safe-scroll {
+  position: absolute;
+  top:      64px;
+  bottom:   72px;
+  left:     0;
+  right:    0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ─── SHARED TYPOGRAPHY PRIMITIVES ──────────────────────── */
+.slide-eyebrow {
+  font-family:    var(--mono);
+  font-size:      10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color:          var(--gold);
+  display:        flex;
+  align-items:    center;
+  gap:            14px;
+  margin-bottom:  20px;
+}
+.slide-eyebrow::before {
+  content:    '';
+  display:    block;
+  width:      28px;
+  height:     1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.slide-h1 {
+  font-family:    var(--serif);
+  font-size:      clamp(44px, 6vw, 88px);
+  font-weight:    300;
+  line-height:    0.92;
+  letter-spacing: -0.025em;
+  color:          var(--white);
+  margin-bottom:  24px;
+}
+.slide-h1 em {
+  font-style: italic;
+  color:      var(--gold2);
+}
+
+.slide-h2 {
+  font-family:    var(--serif);
+  font-size:      clamp(32px, 4.5vw, 64px);
+  font-weight:    300;
+  line-height:    1.0;
+  letter-spacing: -0.02em;
+  color:          var(--white);
+  margin-bottom:  20px;
+}
+.slide-h2 em {
+  font-style: italic;
+  color:      var(--gold2);
+}
+
+.slide-body {
+  font-size:   15px;
+  font-weight: 300;
+  color:       rgba(248, 245, 238, 0.62);
+  line-height: 1.8;
+  max-width:   520px;
+}
+
+/* ─── SHARED BUTTONS ─────────────────────────────────────── */
+.btn-primary {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             10px;
+  padding:         13px 32px;
+  background:      var(--gold);
+  color:           var(--black);
+  font-family:     var(--mono);
+  font-size:       10px;
+  font-weight:     500;
+  letter-spacing:  0.12em;
+  text-transform:  uppercase;
+  text-decoration: none;
+  border:          none;
+  cursor:          none;
+  position:        relative;
+  overflow:        hidden;
+  transition:      color 0.3s;
+  white-space:     nowrap;
+}
+.btn-primary::after {
+  content:    '';
+  position:   absolute;
+  inset:      0;
+  background: var(--white);
+  transform:  translateX(-101%);
+  transition: transform 0.4s var(--ease-out);
+}
+.btn-primary:hover::after { transform: translateX(0); }
+.btn-primary span         { position: relative; z-index: 1; }
+
+.btn-secondary {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             10px;
+  padding:         13px 32px;
+  background:      transparent;
+  color:           var(--white2);
+  font-family:     var(--mono);
+  font-size:       10px;
+  font-weight:     400;
+  letter-spacing:  0.12em;
+  text-transform:  uppercase;
+  text-decoration: none;
+  border:          1px solid rgba(200, 169, 110, 0.35);
+  cursor:          none;
+  transition:      all 0.3s;
+  white-space:     nowrap;
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color:        var(--gold2);
+}
+
+.btn-ghost {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             8px;
+  padding:         0;
+  background:      transparent;
+  color:           var(--gold-dim);
+  font-family:     var(--mono);
+  font-size:       9px;
+  letter-spacing:  0.15em;
+  text-transform:  uppercase;
+  text-decoration: none;
+  border:          none;
+  cursor:          none;
+  transition:      color 0.2s;
+}
+.btn-ghost:hover { color: var(--gold2); }
+
+/* ─── VIDEO MODAL ────────────────────────────────────────── */
+.modal-overlay {
+  position:        fixed;
+  inset:           0;
+  background:      rgba(8, 8, 8, 0.95);
+  z-index:         1000;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.modal-inner {
+  width:        90vw;
+  max-width:    1100px;
+  aspect-ratio: 16 / 9;
+}
+.modal-inner iframe {
+  width:  100%;
+  height: 100%;
+  border: none;
+}
+
+/* ─── MARQUEE ─────────────────────────────────────────────── */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .slide-h1 { font-size: clamp(36px, 7vw, 64px); }
+  .slide-h2 { font-size: clamp(28px, 5.5vw, 48px); }
+}
+@media (max-width: 768px) {
+  .slide-h1 { font-size: clamp(32px, 8vw, 52px); }
+  .slide-h2 { font-size: clamp(24px, 6vw, 36px); }
+  .slide-body { font-size: 14px; }
+}
