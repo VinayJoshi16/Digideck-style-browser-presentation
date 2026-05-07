@@ -33,7 +33,7 @@ export default function Slide00Hero() {
           flexDirection:  'column',
           justifyContent: 'center',
           height:         '100%',
-          padding:        '0 80px',
+          padding:        '0 80px 160px 80px',
           maxWidth:       '1000px',
         }}
       >
