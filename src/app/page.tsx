@@ -131,13 +131,11 @@ export default function Page() {
         <IntroAnimation onComplete={handleIntroComplete} />
       )}
 
-      {/* Deck */}
+      {/* Deck & AI Leasing Assistant */}
       <LazyMotion features={domAnimation} strict>
         <DeckShell slides={SLIDES} />
+        <ChatBot />
       </LazyMotion>
-
-      {/* AI Leasing Assistant */}
-      <ChatBot />
     </>
   )
 }
