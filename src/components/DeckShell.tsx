@@ -370,25 +370,29 @@ export default function DeckShell({ slides }: DeckShellProps) {
             }}
           >
             {SLIDES.map((slide, i) => (
-              <button
+              <m.button
+                layout
                 key={slide.id}
                 onClick={() => goToSlide(i)}
                 aria-label={`Go to ${slide.label}`}
                 title={slide.label}
-                style={{
-                  width:        i === currentSlide ? '28px' : '6px',
-                  height:       '6px',
-                  borderRadius: '3px',
-                  background:   i === currentSlide
+                initial={false}
+                animate={{
+                  width: i === currentSlide ? 28 : 6,
+                  backgroundColor: i === currentSlide
                     ? 'var(--gold)'
                     : i < currentSlide
                       ? 'var(--gold-dim)'
                       : 'var(--gray2)',
+                }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  height:       6,
+                  borderRadius: 3,
                   border:       'none',
                   cursor:       'none',
                   padding:      0,
                   flexShrink:   0,
-                  transition:   'all 0.35s cubic-bezier(0.22,1,0.36,1)',
                 }}
               />
             ))}
