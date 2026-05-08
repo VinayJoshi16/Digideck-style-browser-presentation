@@ -67,39 +67,41 @@ This is not a scrolling website. It is a **slide-based interactive sales tool** 
 ---
 
 ## Project Structure
+
+```bash
 src/
 ├── app/
-│   ├── layout.tsx              # Fonts, metadata, OG tags
-│   ├── page.tsx                # Root — cursor + intro + DeckShell
+│   ├── layout.tsx              # Fonts, metadata, Open Graph tags
+│   ├── page.tsx                # Root entry — cursor, intro animation, DeckShell
 │   └── api/chat/route.ts       # Groq AI chatbot API route
 │
 ├── components/
-│   ├── DeckShell.tsx           # ★ Core — slide state, navigation, menu
-│   ├── IntroAnimation.tsx      # Cinematic 10s intro before deck loads
+│   ├── DeckShell.tsx           # Core presentation engine — slide state, navigation, menu
+│   ├── IntroAnimation.tsx      # Cinematic intro sequence before deck loads
 │   │
 │   ├── slides/
-│   │   ├── Slide00Hero.tsx     # Slide 1 — Video hero
-│   │   ├── Slide01WhyUs.tsx    # Slide 2 — Why this property
-│   │   ├── Slide02Retail.tsx   # Slide 3 — Retail leasing
-│   │   ├── Slide03Luxury.tsx   # Slide 4 — Luxury positioning
-│   │   ├── Slide04Dining.tsx   # Slide 5 — Dining & lifestyle
-│   │   ├── Slide05Entertainment.tsx  # Slide 6 — Attractions
-│   │   ├── Slide06Events.tsx   # Slide 7 — Events platform
-│   │   ├── Slide07Sponsorship.tsx    # Slide 8 — Partnerships
-│   │   └── Slide08Contact.tsx  # Slide 9 — Get started
+│   │   ├── Slide00Hero.tsx            # Slide 1 — Video hero section
+│   │   ├── Slide01WhyUs.tsx           # Slide 2 — Why this property
+│   │   ├── Slide02Retail.tsx          # Slide 3 — Retail leasing opportunities
+│   │   ├── Slide03Luxury.tsx          # Slide 4 — Luxury positioning
+│   │   ├── Slide04Dining.tsx          # Slide 5 — Dining & lifestyle
+│   │   ├── Slide05Entertainment.tsx  # Slide 6 — Attractions & entertainment
+│   │   ├── Slide06Events.tsx          # Slide 7 — Events platform
+│   │   ├── Slide07Sponsorship.tsx    # Slide 8 — Sponsorship & partnerships
+│   │   └── Slide08Contact.tsx         # Slide 9 — Contact / Get started
 │   │
 │   └── ui/
 │       ├── SlideLayout.tsx     # Shared full-screen slide wrapper
-│       ├── StatBadge.tsx       # Animated count-up stat component
-│       ├── CTAButton.tsx       # Primary / secondary / ghost buttons
+│       ├── StatBadge.tsx       # Animated count-up statistics component
+│       ├── CTAButton.tsx       # Primary, secondary, and ghost CTA buttons
 │       └── ChatBot.tsx         # AI leasing assistant chat panel
 │
 ├── lib/
-│   ├── data.ts                 # All content, stats, copy — single source
-│   └── animations.ts           # Framer Motion shared variants
+│   ├── data.ts                 # Centralized content, stats, and copy
+│   └── animations.ts           # Shared Framer Motion animation variants
 │
 └── styles/
-└── globals.css             # CSS variables, base styles, cursor
+    └── globals.css             # Global styles, CSS variables, custom cursor
 
 ---
 
